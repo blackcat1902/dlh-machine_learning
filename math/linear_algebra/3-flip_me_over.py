@@ -6,11 +6,8 @@ def matrix_transpose(matrix):
         new_row = []
 
         for row in matrix:
-            print(row)
             new_row.append(row[i])
 
         result.append(new_row)
 
     return result
-matrix2 = [[1, 2], [3, 4]]
-print(matrix_transpose(matrix2))
