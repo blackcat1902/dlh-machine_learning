@@ -12,3 +12,5 @@ def matrix_transpose(matrix):
         result.append(new_row)
 
     return result
+matrix2 = [[1, 2], [3, 4]]
+print(matrix_transpose(matrix2))
