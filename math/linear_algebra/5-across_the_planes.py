@@ -15,3 +15,6 @@ def add_matrices2D(mat1, mat2):
             a.append(mat1[i][j] + mat2[i][j])
         result.append(a)
     return result
+mat1 = [[1, 2], [3, 4]]
+mat2 = [[5, 6], [7, 8]]
+print(add_matrices2D(mat1, mat2))
