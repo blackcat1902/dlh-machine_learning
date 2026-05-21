@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 def determinant(matrix):
     # Validate matrix is a list of lists
     if not isinstance(matrix, list) or any(not isinstance(row, list) for row in matrix):
