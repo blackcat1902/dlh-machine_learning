@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 def determinant(matrix):
-    """Helper function to compute determinant"""
     if matrix == [[]]:
         return 1
 
@@ -10,7 +9,8 @@ def determinant(matrix):
         return matrix[0][0]
 
     if n == 2:
-        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        return (matrix[0][0] * matrix[1][1] -
+                matrix[0][1] * matrix[1][0])
 
     det = 0
     for col in range(n):
@@ -24,18 +24,14 @@ def determinant(matrix):
 
 
 def minor(matrix):
-    """Function that calculates the minor matrix"""
-
-    # Validate matrix is a list of lists
     if (not isinstance(matrix, list) or
-        any(not isinstance(row, list) for row in matrix)):
+            any(not isinstance(row, list) for row in matrix)):
         raise TypeError("matrix must be a list of lists")
 
-    # Validate non-empty square matrix
-    if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
+    if (len(matrix) == 0 or
+            any(len(row) != len(matrix) for row in matrix)):
         raise ValueError("matrix must be a non-empty square matrix")
 
-    # Special case: 1x1 matrix
     if len(matrix) == 1:
         return [[1]]
 
@@ -45,7 +41,6 @@ def minor(matrix):
     for i in range(n):
         row = []
         for j in range(n):
-            # Build submatrix excluding row i and column j
             submatrix = [
                 [matrix[r][c] for c in range(n) if c != j]
                 for r in range(n) if r != i
@@ -54,3 +49,4 @@ def minor(matrix):
         minor_matrix.append(row)
 
     return minor_matrix
+    
