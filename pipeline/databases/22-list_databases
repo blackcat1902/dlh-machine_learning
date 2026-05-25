@@ -1,4 +1,2 @@
 // list databases
-show dbs
-
-
+show dbs;
