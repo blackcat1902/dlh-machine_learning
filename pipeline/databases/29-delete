@@ -1,2 +1,2 @@
-//delete all documents
-printJson(db.school.deleteMany({name: "Holberton school"}))
+// delete all documents
+db.school.deleteMany({ name: "Holberton school" })
