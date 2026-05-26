@@ -29,11 +29,14 @@ if __name__ == "__main__":
     print(f"{status_count} status check")
 
 
+    #Top 10 IPs
+    print("IPs:")
+
     top_ips = collection.aggregate([
     {"$group": {"_id": "$ip", "count": {"$sum": 1}}},
     {"$sort": {"count": -1}},
     {"$limit": 10}
-])
+    ])
 
-for ip in top_ips:
+    for ip in top_ips:
     print(f"\t{ip['_id']}: {ip['count']}")
