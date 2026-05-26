@@ -1,5 +1,5 @@
 --create a view 
-CREATE OR REPLACE VIEW need_meeting AS
+CREATE VIEW need_meeting AS
 SELECT name
 FROM students 
 WHERE score < 80 
