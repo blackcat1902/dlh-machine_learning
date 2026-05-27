@@ -1,6 +1,6 @@
 --ComputeAverageScoreForUse
-DELIMITER $$
 
+DELIMITER //
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     UPDATE users
@@ -14,6 +14,6 @@ BEGIN
         WHERE c.user_id = user_id
     )
     WHERE id = user_id;
-END $$
+END //
 
 DELIMITER ;
