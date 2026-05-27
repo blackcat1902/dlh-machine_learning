@@ -1,6 +1,6 @@
 --ComputeAverageScoreForUse
 
-DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
+
 
 DELIMITER $$
 
