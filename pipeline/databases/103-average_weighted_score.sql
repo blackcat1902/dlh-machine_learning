@@ -1,3 +1,5 @@
+-- avg weighted score
+
 DELIMITER //
 
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN p_user_id INT)
