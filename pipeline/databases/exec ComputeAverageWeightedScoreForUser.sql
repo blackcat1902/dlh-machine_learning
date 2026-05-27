@@ -1,0 +1,1 @@
+CALL ComputeAverageWeightedScoreForUser 5;
