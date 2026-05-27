@@ -1,5 +1,4 @@
 --creates a function SafeDive
-
 DELIMITER //
 
 CREATE FUNCTION SafeDiv(a INT, b INT)
