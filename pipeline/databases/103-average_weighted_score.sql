@@ -1,6 +1,6 @@
 --ComputeAverageScoreForUse
 
-DELIMITER $$
+DELIMITER //
 
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
 
@@ -14,7 +14,7 @@ BEGIN
         WHERE c.user_id = user_id
     )
     WHERE id = user_id;
-END $$
+END //
 
 DELIMITER ;
 
