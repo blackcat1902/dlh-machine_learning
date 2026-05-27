@@ -1,10 +1,11 @@
---ComputeAverageScoreForUser
+--ComputeAverageScoreForUse
+
 DELIMITER //
 
-CREATE PROCEDURE ComputeAverageScoreForUser(IN user_id INT)
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     UPDATE users
-    SET average_weighted_score = (
+    SET average_score = (
         SELECT SUM(c.score * p.weight) / SUM(p.weight)
         FROM corrections c
         JOIN projects p ON c.project_id = p.id
@@ -14,3 +15,6 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+
