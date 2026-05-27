@@ -1,9 +1,7 @@
 --ComputeAverageScoreForUse
-
-
-
 DELIMITER $$
 
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     UPDATE users
     SET average_score = (
