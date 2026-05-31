@@ -1,57 +1,41 @@
 #!/usr/bin/env python3
-"""Calculate the inverse of a matrix"""
 
 def inverse(matrix):
-    # Validate: must be a list of lists
-    if (not isinstance(matrix, list) or
-        any(not isinstance(row, list) for row in matrix)):
+    """
+    Compute the inverse of a square matrix using
+    determinant and adjugate method.
+    """
+
+    # Type checks
+    if not isinstance(matrix, list) or any(not isinstance(r, list) for r in matrix):
         raise TypeError("matrix must be a list of lists")
 
-    # Validate: non-empty square matrix
-    if (len(matrix) == 0 or
-        any(len(row) != len(matrix) for row in matrix)):
+    # Empty or non-square check
+    if len(matrix) == 0:
         raise ValueError("matrix must be a non-empty square matrix")
 
-    n = len(matrix)
+    size = len(matrix)
 
-    # Create augmented matrix [A | I]
-    A = [row[:] for row in matrix]
-    I = [[float(i == j) for j in range(n)] for i in range(n)]
+    if any(len(r) != size for r in matrix):
+        raise ValueError("matrix must be a non-empty square matrix")
 
-    for i in range(n):
-        # Find pivot
-        pivot = A[i][i]
+    # Compute determinant
+    det_val = determinant(matrix)
 
-        # If pivot is zero, try to swap with a lower row
-        if pivot == 0:
-            for j in range(i + 1, n):
-                if A[j][i] != 0:
-                    A[i], A[j] = A[j], A[i]
-                    I[i], I[j] = I[j], I[i]
-                    pivot = A[i][i]
-                    break
-            else:
-                return None  # Singular matrix
+    # If determinant is zero → no inverse
+    if det_val == 0:
+        return None
 
-        # Normalize pivot row
-        for j in range(n):
-            A[i][j] /= pivot
-            I[i][j] /= pivot
+    # Get adjugate matrix
+    adj_matrix = adjugate(matrix)
 
-        # Eliminate other rows
-        for k in range(n):
-            if k != i:
-                factor = A[k][i]
-                for j in range(n):
-                    A[k][j] -= factor * A[i][j]
-                    I[k][j] -= factor * I[i][j]
+    # Build inverse matrix
+    inverse_mat = []
 
-    return I
+    for row in range(size):
+        new_row = []
+        for col in range(size):
+            new_row.append(adj_matrix[row][col] / det_val)
+        inverse_mat.append(new_row)
 
-# Fix floating point precision
-    for i in range(n):
-        for j in range(n):
-            I[i][j] = round(I[i][j], 15)
-
-    return I
-
+    return inverse_mat
