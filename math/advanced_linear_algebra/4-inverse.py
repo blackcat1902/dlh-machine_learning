@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""Calculate the inverse of a matrix"""
+
 def inverse(matrix):
     # Validate: must be a list of lists
     if (not isinstance(matrix, list) or
@@ -5,7 +8,8 @@ def inverse(matrix):
         raise TypeError("matrix must be a list of lists")
 
     # Validate: non-empty square matrix
-    if len(matrix) == 0 or any(len(row) != len(matrix) for row in matrix):
+    if (len(matrix) == 0 or
+        any(len(row) != len(matrix) for row in matrix)):
         raise ValueError("matrix must be a non-empty square matrix")
 
     n = len(matrix)
