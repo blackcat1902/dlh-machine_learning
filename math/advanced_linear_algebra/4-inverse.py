@@ -47,3 +47,11 @@ def inverse(matrix):
                     I[k][j] -= factor * I[i][j]
 
     return I
+
+# Fix floating point precision
+    for i in range(n):
+        for j in range(n):
+            I[i][j] = round(I[i][j], 15)
+
+    return I
+
