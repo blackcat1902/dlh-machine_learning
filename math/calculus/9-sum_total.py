@@ -2,7 +2,16 @@
 """ the calculation sum of the squared numbers """
 
 def summation_i_squared(n):
-    """ a function that calculates"""
+    """ a function that calculates
+    
+    Args:
+        n: The stopping condition.
+
+    Returns:
+        Integer sum of squares.
+    
+    """
+
 
     if not isinstance(n, int)  or  n<0:
         return None
