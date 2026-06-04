@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def scatter():
     """ Dataset generation and plotting commands are defined here. """
-    
+
     mean = [69, 0]
     cov = [[15, 8], [8, 15]]
     np.random.seed(5)
@@ -19,3 +19,4 @@ def scatter():
     plt.ylabel("Weight (lbs)")
     plt.title("Men's Height vs Weight")
     plt.show()
+    
