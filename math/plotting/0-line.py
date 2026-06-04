@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Module that plots a cubic line graph"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 
