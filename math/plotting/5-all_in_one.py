@@ -78,6 +78,3 @@ def all_in_one():
     plt.ylabel("Number of Students", fontsize = font_size)
     plt.xticks(bins)
     plt.tick_params(labelsize = font_size)
-    
-
-
