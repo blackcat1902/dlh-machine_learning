@@ -1,9 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+"""The Module that plots all 5 previous graphs in one figure."""
 import numpy as np
 import matplotlib.pyplot as plt
 
-def all_in_one():
 
+def all_in_one():
+    """The function represents plotting  graphs in one figure."""
     y0 = np.arange(0, 11) ** 3
 
     mean = [69, 0]
@@ -33,12 +35,14 @@ def all_in_one():
     plt.figure(figsize=(10, 8))
     plt.suptitle('All in One')
 
+    #Graph1
     plt.subplot2grid((3,2), (0,0))
     x = np.arange(0, 11)
     plt.plot(x, yO, color='red', linestyle='-')
     plt.xlim(0, 10)
     plt.tick_params(labelsize = font_size)
 
+    #Graph2
     plt.subplot2grid((3,2), (0,1))
     plt.scatter(x1,y1, color='magenta')
     plt.xlabel("Height (in)", fontsize = font_size )
@@ -46,6 +50,7 @@ def all_in_one():
     plt.title("Men's Height vs Weight", fontsize = font_size)
     plt.tick_params(labelsize = font_size)
 
+    #Graph3
     plt.subplot2grid((3,2), (1,0))
     plt.plot(x2, y2)
     plt.xlabel("Time (years)", fontsize = font_size)
@@ -55,7 +60,7 @@ def all_in_one():
     plt.yscale('log')
     plt.tick_params(labelsize = font_size)
 
-    
+    #Graph4
     plt.subplot2grid((3,2), (1,1))
     plt.xlabel("Time (years)", fontsize = font_size)
     plt.ylabel("Fraction Remaining", fontsize = font_size)
@@ -67,7 +72,7 @@ def all_in_one():
     plt.legend(loc='upper right')
     plt.tick_params(labelsize = font_size)
 
-    
+    #Graph5
     plt.subplot2grid((3,2), (2,0), colspan=2)
     bins = np.arange(0, 101, 10)
     plt.hist(student_grades, bins=bins, edgecolor='black')
