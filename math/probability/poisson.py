@@ -2,10 +2,8 @@
 class Poisson:
     """Class that represents a poisson distribution."""
 
-
     def __init__(self, data=None, lambtha=1.):
         """ The function represents a poisson distribution."""
-
         if data is None:
             # data is not given, controlling lambtha. 
             if lambtha <= 0:
