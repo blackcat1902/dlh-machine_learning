@@ -74,3 +74,33 @@ class Normal:
 
         return coefficient * (e ** exponent)
     
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value
+
+        Args:
+            x: The x-value
+
+        Returns:
+            The CDF value for x
+        """
+        # Calculate the internal value for the error function
+        # erf_input = (x - mean) / (stddev * sqrt(2))
+        erf_input = (x - self.mean) / (self.stddev * (2 ** 0.5))
+
+        # Absolute value to handle symmetry
+        val = abs(erf_input)
+
+        # Approximation constants for erf(x)
+        a1 = 0.0705230784
+        a2 = 0.0422820123
+        a3 = 0.0092705272
+        a4 = 0.0001520143
+        a5 = 0.0002765672
+        a6 = 0.0000430638
+
+        # Compute the polynomial inside the denominator
+        poly = (1 + a1*val + a2*(val**2) + a3*(val**3) +
+                a4*(val**4) + a5*(val**5) + a6*(val**6))
+
+        erf_approx = 1 - (1 / (poly ** 16))
+        
