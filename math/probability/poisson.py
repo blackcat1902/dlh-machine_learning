@@ -18,12 +18,31 @@ class Poisson:
             
             # Lambda = mean 
             self.lambtha = float(sum(data) / len(data))
-            
+
     def pmf(self, k):
+        """
+        Calculates the value of the PMF for a given number of 'successes'.
+        """
+       
         k = int(k)
+
+       
         if k < 0:
-            return 0.0
-        from math import exp, factorial
-        lambtha = self.lambtha
-        pmf_value = (exp(-lambtha) * (lambtha ** k)) / factorial(k)
+            return 0
+
+       
+        e = 2.7182818285
+
+        
+        factorial = 1
+        for i in range(1, k + 1):
+            factorial *= i
+
+        
+        lambtha_power_k = self.lambtha ** k
+        e_power_lambtha = e ** self.lambtha
+
+        pmf_value = lambtha_power_k / (e_power_lambtha * factorial)
+
         return pmf_value
+    
