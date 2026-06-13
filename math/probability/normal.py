@@ -27,8 +27,8 @@ class Normal:
             # Calculate the mean
             self.mean = float(sum(data) / len(data))
 
-            # Calculate the variance (sum of squared differences from the mean)
-            variance = sum((x - self.mean) ** 2 for x in data) / len(data)
+            # Calculate the sample variance (divide by N - 1 for Bessel's correction)
+            variance = sum((d - self.mean) ** 2 for d in data) / (len(data) - 1)
 
             # Calculate the standard deviation (square root of variance)
             self.stddev = float(variance ** 0.5)
@@ -75,7 +75,14 @@ class Normal:
         return coefficient * (e ** exponent)
     
     def cdf(self, x):
-        """Calculates the value of the CDF for a given x-value"""
+        """Calculates the value of the CDF for a given x-value
+
+        Args:
+            x: The x-value
+
+        Returns:
+            The CDF value for x
+        """
         # Calculate the internal value for the error function
         erf_input = (x - self.mean) / (self.stddev * (2 ** 0.5))
 
