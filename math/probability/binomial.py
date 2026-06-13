@@ -55,3 +55,40 @@ class Binomial:
 
             # 4. Recalculate p based on the strictly rounded integer n
             self.p = float(mean / self.n)
+    
+    def _factorial(self, num):
+        """Helper method to calculate the factorial of a number"""
+        if num == 0 or num == 1:
+            return 1
+        result = 1
+        for i in range(2, num + 1):
+            result *= i
+        return result
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes
+
+        Args:
+            k: The number of successes
+
+        Returns:
+            The PMF value for k, or 0 if k is out of range
+        """
+        # Convert k to an integer as required
+        k = int(k)
+
+        # If k is out of range (cannot have fewer than 0 or more than n successes)
+        if k < 0 or k > self.n:
+            return 0.0
+
+        # Calculate binomial coefficient: n! / (k! * (n - k)!)
+        n_fact = self._factorial(self.n)
+        k_fact = self._factorial(k)
+        nk_fact = self._factorial(self.n - k)
+        
+        binomial_coefficent = n_fact / (k_fact * nk_fact)
+
+        # Calculate PMF: nCr * (p ** k) * ((1 - p) ** (n - k))
+        pmf_value = binomial_coefficent * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+
+        return float(pmf_value)
