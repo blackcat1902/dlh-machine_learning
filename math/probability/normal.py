@@ -75,16 +75,8 @@ class Normal:
         return coefficient * (e ** exponent)
     
     def cdf(self, x):
-        """Calculates the value of the CDF for a given x-value
-
-        Args:
-            x: The x-value
-
-        Returns:
-            The CDF value for x
-        """
+        """Calculates the value of the CDF for a given x-value"""
         # Calculate the internal value for the error function
-        # erf_input = (x - mean) / (stddev * sqrt(2))
         erf_input = (x - self.mean) / (self.stddev * (2 ** 0.5))
 
         # Absolute value to handle symmetry
@@ -102,5 +94,14 @@ class Normal:
         poly = (1 + a1*val + a2*(val**2) + a3*(val**3) +
                 a4*(val**4) + a5*(val**5) + a6*(val**6))
 
+        # This gives the erf for the ABSOLUTE value
         erf_approx = 1 - (1 / (poly ** 16))
         
+        # Restore the negative sign if the original erf_input was negative
+        if erf_input < 0:
+            erf_approx = -erf_approx
+
+        # Calculate final CDF using the standard formula: 0.5 * (1 + erf(z / sqrt(2)))
+        final_cdf = 0.5 * (1 + erf_approx)
+        
+        return final_cdf
