@@ -4,7 +4,6 @@ This module calculates the marginal probability of obtaining specific data
 given various hypothetical probabilities and their corresponding prior beliefs.
 """
 import numpy as np
-intersection = __import__('1-intersection').intersection
 
 
 def marginal(x, n, P, Pr):
@@ -44,8 +43,15 @@ def marginal(x, n, P, Pr):
     if not np.isclose(np.sum(Pr), 1.0):
         raise ValueError("Pr must sum to 1")
 
-    # Calculate intersection probabilities using the imported function
-    intersection_probs = intersection(x, n, P, Pr)
+    # 1. Likelihood (Binomial PMF) calculation
+    fact_n = np.math.factorial(n)
+    fact_x = np.math.factorial(x)
+    fact_nx = np.math.factorial(n - x)
+    comb = fact_n / (fact_x * fact_nx)
+    likelihood = comb * (P ** x) * ((1 - P) ** (n - x))
 
-    # The marginal probability is the sum of all individual intersection elements
-    return np.sum(intersection_probs)
+    # 2. Intersection calculation
+    intersection = likelihood * Pr
+
+    # 3. Marginal probability calculation (sum of intersections)
+    return np.sum(intersection)
