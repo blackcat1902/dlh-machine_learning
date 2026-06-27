@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Defines the MultiNormal class representing a Multivariate Normal distribution"""
+"""
+Defines the MultiNormal class representing a
+Multivariate Normal distribution
+"""
 import numpy as np
 
 
@@ -23,14 +26,15 @@ class MultiNormal:
         if n < 2:
             raise ValueError("data must contain multiple data points")
 
-        # Calculate the mean along axis 1 (across data points for each dimension)
+        # Calculate the mean along axis 1
         # Result shape will be (d, 1)
         self.mean = np.mean(data, axis=1, keepdims=True)
 
         # Center the data by subtracting the mean
         data_centered = data - self.mean
 
-        # Calculate the covariance matrix: (data_centered @ data_centered.T) / (n - 1)
-        # Since data is (d, n), data_centered.T is (n, d), resulting in (d, d)
+        # Calculate the covariance matrix
+        # Since data is (d, n), data_centered.T is (n, d)
+        # resulting in (d, d)
         self.cov = np.matmul(data_centered, data_centered.T) / (n - 1)
         
