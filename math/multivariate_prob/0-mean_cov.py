@@ -35,5 +35,7 @@ def mean_cov(X):
 
     return mean, cov
 
-result = mean_cov( [12, 30, 10], [[36, -30, 15], [-30, 100, -20], [15, -20, 25]])
+
+X_test = np.array([[12, 30, 10], [36, -30, 15], [-30, 100, -20], [15, -20, 25]])
+result = mean_cov(X_test)
 print(result)
