@@ -37,4 +37,71 @@ class MultiNormal:
         # Since data is (d, n), data_centered.T is (n, d)
         # resulting in (d, d)
         self.cov = np.matmul(data_centered, data_centered.T) / (n - 1)
-        
+
+    def pdf(self, x):
+        """
+        Calculates the PDF at a specific data point.
+
+        Parameters:
+        - x: numpy.ndarray of shape (d, 1) containing the data point
+
+        Returns:
+        - The value of the PDF (float)
+        """
+        if not isinstance(x, np.ndarray):
+            raise TypeError("x must be a numpy.ndarray")
+
+        d = self.cov.shape[0]
+
+        if len(x.shape) != 2 or x.shape != (d, 1):
+            raise ValueError("x must have the shape ({}, 1)".format(d))
+
+        # Calculate determinant and inverse of the covariance matrix
+        det = np.linalg.det(self.cov)
+        inv = np.linalg.inv(self.cov)
+
+        # Calculate the normalization factor: 1 / sqrt((2 * pi)^d * det)
+        norm_factor = 1.0 / np.sqrt(((2 * np.pi) ** d) * det)
+
+        # Calculate the exponent term: -0.5 * (x - mu).T @ inv @ (x - mu)
+        x_centered = x - self.mean
+        exponent = -0.5 * np.matmul(np.matmul(x_centered.T, inv), x_centered)
+
+        # Extract the scalar value from the 1x1 matrix result of the exponent
+        pdf_value = norm_factor * np.exp(exponent[0][0])
+        return pdf_value
+
+    def pdf(self, x):
+        """
+        Calculates the PDF at a specific data point.
+
+        Parameters:
+        - x: numpy.ndarray of shape (d, 1) containing the data point
+
+        Returns:
+        - The value of the PDF (float)
+        """
+        if not isinstance(x, np.ndarray):
+            raise TypeError("x must be a numpy.ndarray")
+
+        d = self.cov.shape[0]
+
+        if len(x.shape) != 2 or x.shape != (d, 1):
+            raise ValueError("x must have the shape ({}, 1)".format(d))
+
+        # Calculate determinant and inverse of the covariance matrix
+        det = np.linalg.det(self.cov)
+        inv = np.linalg.inv(self.cov)
+
+        # Calculate the normalization factor: 1 / sqrt((2 * pi)^d * det)
+        norm_factor = 1.0 / np.sqrt(((2 * np.pi) ** d) * det)
+
+        # Calculate the exponent term: -0.5 * (x - mu).T @ inv @ (x - mu)
+        x_centered = x - self.mean
+        exponent = -0.5 * np.matmul(np.matmul(x_centered.T, inv), x_centered)
+
+        # Extract the scalar value from the 1x1 matrix result of the exponent
+        pdf_value = norm_factor * np.exp(exponent[0][0])
+
+        return pdf_value
+    
