@@ -34,8 +34,3 @@ def mean_cov(X):
     cov = np.matmul(X_centered.T, X_centered) / (n - 1)
 
     return mean, cov
-
-
-X_test = np.array([[12, 30, 10], [36, -30, 15], [-30, 100, -20], [15, -20, 25]])
-result = mean_cov(X_test)
-print(result)
