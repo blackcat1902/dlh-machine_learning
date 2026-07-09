@@ -5,7 +5,6 @@ into a pandas DataFrame with alphabetically labeled columns.
 """
 
 import pandas as pd
-import string
 
 
 def from_numpy(array):
@@ -19,6 +18,6 @@ def from_numpy(array):
         pd.DataFrame: A DataFrame with columns labeled alphabetically
         and capitalized (A, B, C, ...). Supports up to 26 columns.
     """
-    number_of_colums = array.shape[1]
-    name_of_columns = list(string.ascii_uppercase[:number_of_colums])
-    return pd.DataFrame(array, columns= name_of_columns )
+    number_of_columns = array.shape[1]
+    name_of_columns = [chr(ord('A') + i) for i in range(number_of_columns)]
+    return pd.DataFrame(array, columns=name_of_columns)
