@@ -3,10 +3,7 @@
 Module that provides a function to convert a NumPy ndarray
 into a pandas DataFrame with alphabetically labeled columns.
 """
-
 import pandas as pd
-
-
 def from_numpy(array):
     """
     Create a pandas DataFrame from a NumPy ndarray.
