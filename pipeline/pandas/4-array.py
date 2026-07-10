@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-import numpy as np
-import pandas as pd
-
 
 def array(df):
     # Select last 10 rows of High and Close
