@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import pandas as pd
+
+
 def rename(df):
     """
     Rename the Timestamp column to Datetime, convert it to datetime,
