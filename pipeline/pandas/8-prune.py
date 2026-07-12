@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 def prune(df):
     """
     Removes rows where the 'Close' column has NaN values.
