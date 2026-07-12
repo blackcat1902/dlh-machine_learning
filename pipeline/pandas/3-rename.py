@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Rename the Timestamp column to Datetime, convert it to datetime,
-and return only Datetime and Close columns.
-"""
-
 def rename(df):
     """
     Rename the Timestamp column to Datetime, convert it to datetime,
