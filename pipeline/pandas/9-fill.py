@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+
+
 def fill(df):
     """
     Clean and fill a cryptocurrency OHLCV DataFrame.
